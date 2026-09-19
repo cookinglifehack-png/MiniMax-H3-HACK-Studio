@@ -110,3 +110,7 @@ xAI・OpenAI・Anthropic・Google Gemini 등 여러 LLM 제공업체의 API 키�
 
 Windows 설치 프로그램(자체 완결형・추가 런타임 불필요)은 Releases에서
 받을 수 있습니다.
+
+## 피드백 및 문의
+
+버그 신고・기능 요청・기타 문의사항은 [Issues](../../issues)를 이용해 주세요.

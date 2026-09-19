@@ -122,3 +122,8 @@ generación, o generar escenas por lotes para R2V.
 
 El instalador de Windows (autocontenido, sin necesidad de runtime adicional)
 está disponible en Releases.
+
+## Comentarios y preguntas
+
+Utiliza [Issues](../../issues) para informes de errores, solicitudes de
+funciones o cualquier otra pregunta.

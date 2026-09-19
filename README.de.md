@@ -121,3 +121,8 @@ Prompts im Generierungsformular oder stapelweises Erzeugen von Szenen für R2V.
 
 Der Windows-Installer (in sich geschlossen, keine zusätzliche Laufzeitumgebung
 nötig) ist über Releases erhältlich.
+
+## Feedback & Fragen
+
+Bitte nutze [Issues](../../issues) für Fehlerberichte, Feature-Wünsche oder
+sonstige Fragen.

@@ -101,3 +101,7 @@ xAI・OpenAI・Anthropic・Google Gemini 等多个 LLM 提供商的 API 密钥�
 ## 下载
 
 Windows 安装程序（自包含・无需额外运行时）可从 Releases 页面获取。
+
+## 反馈与提问
+
+如有 bug 报告、功能建议或其他任何问题，请使用 [Issues](../../issues)。

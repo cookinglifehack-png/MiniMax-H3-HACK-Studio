@@ -117,3 +117,8 @@ formulir generasi, atau membuat adegan secara batch untuk R2V.
 
 Installer Windows (mandiri sepenuhnya, tanpa perlu runtime tambahan) tersedia
 di Releases.
+
+## Masukan & Pertanyaan
+
+Gunakan [Issues](../../issues) untuk laporan bug, permintaan fitur, atau
+pertanyaan lainnya.

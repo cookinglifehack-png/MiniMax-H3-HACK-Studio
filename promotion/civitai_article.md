@@ -62,4 +62,4 @@ Feedback and bug reports welcome.
 
 ※ 投稿前に確認: リポジトリが公開されている必要があります（今はPrivate）。
 　 画像はスクリーンショットをCivitAIの記事エディタに直接アップロードする形になります
-　（`D:\htdocs\h3exe\release\screenshots\` の3枚）。
+　（このリポジトリの`screenshots/`フォルダにある3枚）。
