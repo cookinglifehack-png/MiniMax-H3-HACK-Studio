@@ -9,6 +9,65 @@ ComfyUI 위에서 동작하는 동영상 생성 모델 **MiniMax H3**를, 설치
 없습니다——더블클릭으로 실행한 뒤, 브라우저 폼을 다루듯 조작만으로 T2V・I2V・
 R2V 동영상 생성을 할 수 있습니다.
 
+## 설치 설정(ComfyUI + MiniMax H3 모델)
+
+설치 프로그램에는 앱 본체가 포함되어 있지만, **ComfyUI 본체・MiniMax H3 모델
+본체는 포함되어 있지 않습니다**——별도로 ComfyUI 인스턴스에 H3 모델을 설치하고,
+앱의 설정 화면에서 백엔드로 등록해야 합니다. 아래에서 다운로드하여
+`ComfyUI/models/<폴더>/`에 배치해 주세요(파일명은 앱이 참조하는 이름과 완전히
+일치해야 합니다——AI 에이전트/CLI로 자동 설정하는 경우, 아래 표의 "파일명" 열을
+그대로 사용하면 됩니다).
+
+### ComfyUI 본체
+
+- 공식 설치 가이드(Windows portable): https://docs.comfy.org/installation/comfyui_portable_windows
+
+### ① 최소한(H3만 동작시키기)
+
+전부 공식 저장소 [`Comfy-Org/MiniMax-H3`](https://huggingface.co/Comfy-Org/MiniMax-H3)에서 받을 수 있습니다.
+
+| 역할 | 파일명 | 배치 폴더 |
+|---|---|---|
+| 텍스트 인코더 | `qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors` | `models/text_encoders/` |
+| 오디오 VAE | `minimax_h3_audio_vae_fp32.safetensors` | `models/vae/` |
+| 비디오 VAE(fp16) | `minimax_h3_video_vae_fp16.safetensors` | `models/vae/` |
+| UNet fl2va(int8 양자화) | `minimax_h3_fl2va_pruned_int8_convrot.safetensors` | `models/diffusion_models/` |
+| UNet ref2va(int8 양자화) | `minimax_h3_ref2va_pruned_int8_convrot.safetensors` | `models/diffusion_models/` |
+
+이것만으로 T2V/I2V/R2V가 모두 동작합니다(quant=int8, 가속 LoRA/TensorRT 없는 기본 구성).
+
+### ② 추천(실측 최고속 구성)
+
+실측 결과, 다음 조합이 가장 빨랐습니다(기준 442초 → 182초, 약 59% 단축). ①에
+추가로 도입해 주세요.
+
+| 역할 | 출처 | 파일명 / 배치 위치 |
+|---|---|---|
+| Turbo 프루닝판 LoRA | https://huggingface.co/drbaph/MiniMax-H3-Turbo-Lora-ComfyUI | `minimax_h3_turbo_v4_step600_ema_pruned_comfyui.safetensors` → `models/loras/` |
+| Turbo 노드 | https://github.com/Larryvrh/ComfyUI-MiniMax-H3-Turbo | `custom_nodes/`에 clone(`MiniMaxH3TurboLoRA`/`MiniMaxH3TurboSampler`) |
+| VAE TRT 노드 | https://github.com/lihaoyun6/ComfyUI-H3VAE_TRT | `custom_nodes/`에 clone, `pip install tensorrt` |
+| VAE TRT용 ONNX | https://huggingface.co/lihaoyun6/MiniMax-H3-VAE-ONNX | `models/vae/`에 배치 후, "MiniMax-H3 TRT VAE Compiler" 노드로 `.engine`으로 한 번만 컴파일(VRAM 12GB 미만이면 w4a16_awq 저VRAM판 디코더 선택) |
+| SageAttention 노드 | https://github.com/kijai/ComfyUI-KJNodes | `custom_nodes/`에 clone(`PathchSageAttentionKJ`) |
+| SageAttention 본체(Windows wheel) | https://github.com/woct0rdho/SageAttention/releases | `pip install triton-windows` 후, PyTorch/CUDA 버전에 맞는 wheel을 pip install |
+
+### ③ 전부(다른 양자화・가속 방식・장식용 LoRA)
+
+| 역할 | 출처 | 파일명 / 배치 위치 |
+|---|---|---|
+| UNet w4a8 양자화 | https://huggingface.co/starsfriday/MiniMax-H3-w4a8 | `minimax_h3_fl2va_pruned_w4a8_mixed.safetensors` / `minimax_h3_ref2va_pruned_w4a8_mixed.safetensors` → `models/diffusion_models/` |
+| 비디오 VAE int8 양자화(Kijai판 ConvRot) | https://huggingface.co/Comfy-Org/MiniMax-H3(`vae/` 폴더) | `minimax_h3_video_vae_int8_convrot.safetensors` → `models/vae/`(ComfyUI 0.31.0 이상 필요) |
+| Turbo lightx2v판(fl2v/ref2v 별도) | https://huggingface.co/lightx2v/Minimax-h3-Turbo | `minimax_h3_fl2v_turbo_4step_v1.2_768p_comfyui_bf16.safetensors` / `minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors` → `models/loras/` |
+| PDD-Acc(8스텝, 공식) | 모델: https://huggingface.co/alibaba-pai/MiniMax-H3-Acc-LoRAs<br>노드: https://github.com/Jalen-Brunson/ComfyUI-MiniMax-H3-PDD-Acc | `MiniMax-H3-FL2VA-Acc-8Step.safetensors` / `MiniMax-H3-Ref2VA-Acc-8Step.safetensors` → `models/pdd_acc/` |
+| TaoMate(3스텝) | https://huggingface.co/CZMartin22/TaoMate-H3-3step-ComfyUI | 배포명 `TaoMate-H3-3step-ComfyUI.safetensors`를 **`minimax_h3_taomate_3step.safetensors`로 이름을 바꿔서** `models/loras/`에(T2V/I2V용, R2V는 참조 이미지가 잘 반영되지 않아 비권장) |
+| 프롬프트 리라이터(로컬 LLM, 선택사항——설정 화면의 LLM 연동 탭의 API 키 방식으로도 대체 가능) | 노드: https://github.com/pytraveler/MiniMax-H3-Prompt-Rewriter-ComfyUI<br>LoRA 어댑터: https://huggingface.co/pytraveler/MiniMax-H3-Prompt-Rewriter-LoRA-GGUF | 베이스 GGUF 모델(Qwen3.6-27B/Qwen3-VL-8B-Instruct/Qwen2.5-Omni-7B)은 해당 노드의 README 참조 |
+| 장식용 LoRA: 리얼 인물 | https://huggingface.co/fal/MiniMax-H3-Realism-People-LoRA | 배포명 `h3-realism-people-t2v-i2v-r2v.safetensors`를 **`minimax_h3_realism_people_lora.safetensors`로 이름을 바꿔서** `models/loras/`에 |
+| 장식용 LoRA: 공간 물리 | https://huggingface.co/Jojocodex/minimax-h3-spatial-physics-lora | 배포명 `wushu_spatial_physics_*_pruned.safetensors`(2종류 있으며, 어느 쪽을 사용했는지 미확인)를 **`minimax_h3_spatial_physics_lora.safetensors`로 이름을 바꿔서** `models/loras/`에 |
+| 장식용 LoRA: 16비트 픽셀 아트 | https://huggingface.co/KennethFal/16bit-pixel-lora-minimax-h3 | 배포명 `16bit-pixel.safetensors`를 **`minimax_h3_16bit_pixel_lora.safetensors`로 이름을 바꿔서** `models/loras/`에 |
+
+더 포괄적이고 계속 갱신되는 목록은 커뮤니티가 관리하는
+[wildminder/awesome-minimax-H3](https://github.com/wildminder/awesome-minimax-H3)
+도 참고해 주세요(양자화 변형・파인튜닝・LoRA 등 150건 이상을 수시로 추적).
+
 ## 생성 화면 — 헤매지 않는 단일 화면 구성
 
 ![생성 화면](screenshots/generation.jpg)

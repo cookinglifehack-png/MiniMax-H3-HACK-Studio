@@ -8,6 +8,65 @@ ComfyUI 上で動く動画生成モデル **MiniMax H3** を、インストー�
 Windowsアプリにしました。ComfyUIのワークフローもPHPの知識も不要——ダブルクリックで
 起動し、ブラウザ感覚のフォーム操作だけでT2V・I2V・R2Vの動画生成ができます。
 
+## セットアップ（ComfyUI + MiniMax H3 モデル）
+
+インストーラーにはアプリ本体が入っていますが、**ComfyUI本体・MiniMax H3のモデル
+本体は含まれていません**——別途ComfyUIインスタンスにH3モデルを導入し、アプリの
+設定画面からバックエンドとして登録する必要があります。以下からダウンロードし、
+`ComfyUI/models/<フォルダ>/` に配置してください（ファイル名はアプリが参照する
+名前と完全一致させる必要があります——AIエージェント/CLIで自動セットアップする
+場合は、下表の「ファイル名」列をそのまま使ってください）。
+
+### ComfyUI本体
+
+- 公式インストールガイド（Windows portable）: https://docs.comfy.org/installation/comfyui_portable_windows
+
+### ① 最低限（H3を動かすだけ）
+
+全て公式リポジトリ [`Comfy-Org/MiniMax-H3`](https://huggingface.co/Comfy-Org/MiniMax-H3) から入手できます。
+
+| 役割 | ファイル名 | 配置先フォルダ |
+|---|---|---|
+| テキストエンコーダ | `qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors` | `models/text_encoders/` |
+| 音声VAE | `minimax_h3_audio_vae_fp32.safetensors` | `models/vae/` |
+| 動画VAE（fp16） | `minimax_h3_video_vae_fp16.safetensors` | `models/vae/` |
+| UNet fl2va（int8量子化） | `minimax_h3_fl2va_pruned_int8_convrot.safetensors` | `models/diffusion_models/` |
+| UNet ref2va（int8量子化） | `minimax_h3_ref2va_pruned_int8_convrot.safetensors` | `models/diffusion_models/` |
+
+これだけでT2V/I2V/R2Vすべて動きます（quant=int8、加速LoRA/TensorRT無しの基本構成）。
+
+### ② オススメ（実測最速構成）
+
+実測した結果、以下の組み合わせが最速でした（ベースラインの442秒→182秒、約59%
+短縮）。①に加えて導入してください。
+
+| 役割 | 入手先 | ファイル名 / 配置先 |
+|---|---|---|
+| Turbo プルーニング対応版LoRA | https://huggingface.co/drbaph/MiniMax-H3-Turbo-Lora-ComfyUI | `minimax_h3_turbo_v4_step600_ema_pruned_comfyui.safetensors` → `models/loras/` |
+| Turboノード | https://github.com/Larryvrh/ComfyUI-MiniMax-H3-Turbo | `custom_nodes/`にclone（`MiniMaxH3TurboLoRA`/`MiniMaxH3TurboSampler`） |
+| VAE TRTノード | https://github.com/lihaoyun6/ComfyUI-H3VAE_TRT | `custom_nodes/`にclone、`pip install tensorrt` |
+| VAE TRT用ONNX | https://huggingface.co/lihaoyun6/MiniMax-H3-VAE-ONNX | `models/vae/`に配置後、「MiniMax-H3 TRT VAE Compiler」ノードで`.engine`に一度だけコンパイル（12GB未満VRAMならw4a16_awq低VRAM版デコーダを選択） |
+| SageAttentionノード | https://github.com/kijai/ComfyUI-KJNodes | `custom_nodes/`にclone（`PathchSageAttentionKJ`） |
+| SageAttention本体（Windows wheel） | https://github.com/woct0rdho/SageAttention/releases | `pip install triton-windows`後、PyTorch/CUDA版に合うwheelをpip install |
+
+### ③ 全部（他の量子化・加速方式・装飾LoRA）
+
+| 役割 | 入手先 | ファイル名 / 配置先 |
+|---|---|---|
+| UNet w4a8量子化 | https://huggingface.co/starsfriday/MiniMax-H3-w4a8 | `minimax_h3_fl2va_pruned_w4a8_mixed.safetensors` / `minimax_h3_ref2va_pruned_w4a8_mixed.safetensors` → `models/diffusion_models/` |
+| 動画VAE int8量子化（Kijai版ConvRot） | https://huggingface.co/Comfy-Org/MiniMax-H3（`vae/`フォルダ） | `minimax_h3_video_vae_int8_convrot.safetensors` → `models/vae/`（要ComfyUI 0.31.0+） |
+| Turbo lightx2v版（fl2v/ref2v別） | https://huggingface.co/lightx2v/Minimax-h3-Turbo | `minimax_h3_fl2v_turbo_4step_v1.2_768p_comfyui_bf16.safetensors` / `minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors` → `models/loras/` |
+| PDD-Acc（8step、公式） | モデル: https://huggingface.co/alibaba-pai/MiniMax-H3-Acc-LoRAs<br>ノード: https://github.com/Jalen-Brunson/ComfyUI-MiniMax-H3-PDD-Acc | `MiniMax-H3-FL2VA-Acc-8Step.safetensors` / `MiniMax-H3-Ref2VA-Acc-8Step.safetensors` → `models/pdd_acc/` |
+| TaoMate（3step） | https://huggingface.co/CZMartin22/TaoMate-H3-3step-ComfyUI | 配布名`TaoMate-H3-3step-ComfyUI.safetensors`を**`minimax_h3_taomate_3step.safetensors`にリネームして**`models/loras/`へ（T2V/I2V向け、R2Vは参照画像が効きにくいため非推奨） |
+| プロンプトリライター（ローカルLLM、任意——設定画面のLLM連携タブのAPIキー方式でも代替可） | ノード: https://github.com/pytraveler/MiniMax-H3-Prompt-Rewriter-ComfyUI<br>LoRAアダプタ: https://huggingface.co/pytraveler/MiniMax-H3-Prompt-Rewriter-LoRA-GGUF | ベースGGUFモデル（Qwen3.6-27B/Qwen3-VL-8B-Instruct/Qwen2.5-Omni-7B）はノードのREADME参照 |
+| 装飾LoRA: リアル人物 | https://huggingface.co/fal/MiniMax-H3-Realism-People-LoRA | 配布名`h3-realism-people-t2v-i2v-r2v.safetensors`を**`minimax_h3_realism_people_lora.safetensors`にリネームして**`models/loras/`へ |
+| 装飾LoRA: 空間物理 | https://huggingface.co/Jojocodex/minimax-h3-spatial-physics-lora | 配布名`wushu_spatial_physics_*_pruned.safetensors`（2種類あり、どちらを使ったか要確認）を**`minimax_h3_spatial_physics_lora.safetensors`にリネームして**`models/loras/`へ |
+| 装飾LoRA: 16bitドット絵風 | https://huggingface.co/KennethFal/16bit-pixel-lora-minimax-h3 | 配布名`16bit-pixel.safetensors`を**`minimax_h3_16bit_pixel_lora.safetensors`にリネームして**`models/loras/`へ |
+
+網羅的な最新リストは、コミュニティ管理の
+[wildminder/awesome-minimax-H3](https://github.com/wildminder/awesome-minimax-H3)
+も参考にしてください（量子化バリエーション・ファインチューン・LoRA等150件以上を随時追跡）。
+
 ## 生成画面 — 迷わず使える1画面構成
 
 ![生成画面](screenshots/generation.jpg)
