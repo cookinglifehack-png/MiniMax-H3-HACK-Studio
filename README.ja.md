@@ -2,6 +2,8 @@
 
 [English](README.md) | **日本語** | [中文](README.zh.md) | [한국어](README.ko.md) | [Deutsch](README.de.md) | [Español](README.es.md) | [Bahasa Indonesia](README.id.md)
 
+### ⬇️ [インストーラーをダウンロード（Windows）](https://github.com/cookinglifehack-png/MiniMax-H3-HACK-Studio/releases/latest/download/MiniMax_H3_HACK_Studio_Setup.exe)
+
 ComfyUI 上で動く動画生成モデル **MiniMax H3** を、インストールするだけですぐ使える
 Windowsアプリにしました。ComfyUIのワークフローもPHPの知識も不要——ダブルクリックで
 起動し、ブラウザ感覚のフォーム操作だけでT2V・I2V・R2Vの動画生成ができます。

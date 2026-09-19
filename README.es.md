@@ -2,6 +2,8 @@
 
 [English](README.md) | [日本語](README.ja.md) | [中文](README.zh.md) | [한국어](README.ko.md) | [Deutsch](README.de.md) | **Español** | [Bahasa Indonesia](README.id.md)
 
+### ⬇️ [Descargar el instalador (Windows)](https://github.com/cookinglifehack-png/MiniMax-H3-HACK-Studio/releases/latest/download/MiniMax_H3_HACK_Studio_Setup.exe)
+
 Hemos convertido el modelo de generación de video **MiniMax H3**, que se ejecuta
 sobre ComfyUI, en una aplicación de Windows lista para usar en cuanto la
 instalas. No hace falta editar workflows de ComfyUI ni tener conocimientos de

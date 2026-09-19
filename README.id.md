@@ -2,6 +2,8 @@
 
 [English](README.md) | [日本語](README.ja.md) | [中文](README.zh.md) | [한국어](README.ko.md) | [Deutsch](README.de.md) | [Español](README.es.md) | **Bahasa Indonesia**
 
+### ⬇️ [Unduh installer (Windows)](https://github.com/cookinglifehack-png/MiniMax-H3-HACK-Studio/releases/latest/download/MiniMax_H3_HACK_Studio_Setup.exe)
+
 Kami mengemas model generasi video **MiniMax H3**, yang berjalan di atas
 ComfyUI, menjadi aplikasi Windows yang langsung siap dipakai begitu diinstal.
 Tidak perlu mengedit workflow ComfyUI, tidak perlu paham PHP — cukup klik dua

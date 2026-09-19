@@ -2,6 +2,8 @@
 
 **English** | [日本語](README.ja.md) | [中文](README.zh.md) | [한국어](README.ko.md) | [Deutsch](README.de.md) | [Español](README.es.md) | [Bahasa Indonesia](README.id.md)
 
+### ⬇️ [Download the installer (Windows)](https://github.com/cookinglifehack-png/MiniMax-H3-HACK-Studio/releases/latest/download/MiniMax_H3_HACK_Studio_Setup.exe)
+
 A Windows app that lets you use the video generation model **MiniMax H3**, which
 runs on ComfyUI, the moment you install it. No ComfyUI workflow editing, no PHP
 knowledge required — just double-click to launch, then generate T2V, I2V, and
