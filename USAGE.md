@@ -52,6 +52,27 @@ Google Gemini can be used entirely within its free tier without a credit
 card, making it a good one to try first. This feature is entirely optional —
 skipping it has no effect on regular T2V/I2V/R2V generation.
 
+### What changes once an LLM is configured
+
+Two extra buttons appear on the generation form:
+
+- **"Convert for H3"** (T2V/I2V/R2V): write a rough draft in your own
+  language — Japanese, casual English, whatever — in the prompt field and
+  click this to auto-rewrite it into proper H3-format English prompt text.
+  You don't need to know H3's prompt conventions yourself
+- **"🪄 Auto-generate scene JSON"** (R2V only): write your overall story/
+  direction freely (in any language) in the **Story** field, and map
+  characters to reference files in the **Reference** field. The LLM
+  automatically splits this into cuts and generates a full multi-scene JSON
+  with per-scene prompts, dropping it straight into the R2V prompt field.
+  Cut count and total duration can be left blank for auto-detection, or set
+  explicitly
+
+  In other words, instead of writing each cut's prompt by hand, **you can
+  hand it a single piece of direction in your own language and get a
+  ready-to-run prompt set spanning multiple continuous cuts**. This is
+  especially handy for longer music videos or story-driven pieces.
+
 ## 5. Generate a video
 
 Back on the main screen, pick a tab — T2V (text), I2V (image), or R2V
