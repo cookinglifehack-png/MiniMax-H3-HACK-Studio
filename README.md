@@ -1,46 +1,55 @@
 # MiniMax H3 HACK Studio
 
-ComfyUI 上で動く動画生成モデル **MiniMax H3** を、インストールするだけですぐ使える
-Windowsアプリにしました。ComfyUIのワークフローもPHPの知識も不要——ダブルクリックで
-起動し、ブラウザ感覚のフォーム操作だけでT2V・I2V・R2Vの動画生成ができます。
+**English** | [日本語](README.ja.md) | [中文](README.zh.md) | [한국어](README.ko.md) | [Deutsch](README.de.md) | [Español](README.es.md) | [Bahasa Indonesia](README.id.md)
 
-## 生成画面 — 迷わず使える1画面構成
+A Windows app that lets you use the video generation model **MiniMax H3**, which
+runs on ComfyUI, the moment you install it. No ComfyUI workflow editing, no PHP
+knowledge required — just double-click to launch, then generate T2V, I2V, and
+R2V videos entirely through browser-style form controls.
 
-![生成画面](screenshots/generation.jpg)
+## Generation screen — a single, no-guesswork layout
 
-T2V（テキスト）・I2V（画像）・R2V（複数参照）をタブで切り替えるだけのシンプルな
-構成。右側のキューでは、送信したジョブが完了するとその場で動画がインライン再生
-できます——生成中のジョブも進捗が見えるので、待ち時間もストレスになりません。
-秒数・解像度・アスペクト比はスライダーとプリセットでその場で調整でき、
-実際に送信される解像度（例: 1024×576 px）もリアルタイムに表示されます。
+![Generation screen](screenshots/generation.jpg)
 
-## 追加機能 — 高速化オプションを迷わず選べる
+Just switch between T2V (text), I2V (image), and R2V (multiple references) with
+tabs. The queue on the right plays finished videos inline the moment a job
+completes — and you can watch jobs still in progress, so the wait never feels
+like dead time. Duration, resolution, and aspect ratio are all adjustable on the
+spot via sliders and presets, with the actual resolution that will be submitted
+(e.g. 1024×576 px) shown live.
 
-![追加機能画面](screenshots/extra-features.jpg)
+## Extra Features — pick acceleration options with confidence
 
-量子化（int8/w4a8）、Turbo系加速LoRA、VAE高速化など、H3まわりの高速化オプションは
-種類が多く選択を誤ると生成が壊れることもありますが、この画面では**選択肢ごとに
-効果・注意点を日本語で説明**しながらラジオボタンで選べるので迷いません。
-T2V/I2V用とR2V用で別々に最適な加速方式を選べるようになっているのもポイントです
-（対応LoRAが動画の生成方式ごとに違うため）。
+![Extra Features screen](screenshots/extra-features.jpg)
 
-## LLM連携 — プロンプト補助をワンストップで管理
+Quantization (int8/w4a8), Turbo-family acceleration LoRAs, VAE acceleration —
+there are a lot of options around H3, and picking the wrong combination can
+break generation. This screen **explains the effect and caveats of each option**
+right next to its radio button, so you're never guessing. T2V/I2V and R2V each
+get their own optimal acceleration choice, since the supported LoRAs differ by
+generation mode.
 
-![LLM連携画面](screenshots/llm-integration.jpg)
+## LLM Integration — manage prompt assistance in one place
 
-xAI・OpenAI・Anthropic・Google Geminiと、複数のLLMプロバイダのAPIキーを1画面で
-一元管理。**Google Geminiはクレジットカード登録なしの無料枠だけで使える**ことを
-分かりやすくハイライトしているので、まず試してみるハードルが低いのも魅力です。
-登録したキーはマスク表示され、生成フォームのプロンプト書き換えやR2Vのシーン
-一括生成に使う役割を自由に割り当てられます。
+![LLM Integration screen](screenshots/llm-integration.jpg)
 
-## こんな人におすすめ
+Register API keys for xAI, OpenAI, Anthropic, and Google Gemini and manage them
+all from a single screen. It's clearly highlighted that **Google Gemini can be
+used entirely within its free tier, with no credit card required** — a low
+barrier for trying it out first. Registered keys are shown masked, and you can
+freely assign each one's role: rewriting prompts on the generation form, or
+batch-generating scenes for R2V.
 
-- ComfyUIのノードグラフをいじらず、フォーム操作だけでH3の動画生成をしたい
-- 量子化・加速LoRA・VAE高速化の違いがよく分からないまま使うのは避けたい
-- 複数のLLM APIキーを切り替えながらプロンプト補助を試したい
+## Who this is for
 
-## ダウンロード
+- People who want to generate H3 videos through form controls alone, without
+  touching ComfyUI's node graph
+- People who'd rather not use quantization, acceleration LoRAs, and VAE
+  acceleration without understanding what each one does
+- People who want to try prompt assistance while switching between multiple
+  LLM API keys
 
-インストーラー（Windows、自己完結型・追加ランタイム不要）は Releases から入手して
-ください。
+## Download
+
+The Windows installer (self-contained, no additional runtime required) is
+available from Releases.
