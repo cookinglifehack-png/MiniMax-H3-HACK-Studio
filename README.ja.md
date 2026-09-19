@@ -108,6 +108,8 @@ xAI・OpenAI・Anthropic・Google Geminiと、複数のLLMプロバイダのAPI�
 インストーラー（Windows、自己完結型・追加ランタイム不要）は Releases から入手して
 ください。
 
+画面つきの使い方ガイドは [USAGE.ja.md](USAGE.ja.md) を参照してください。
+
 ## フィードバック・質問
 
 不具合報告・機能要望・その他の質問は [Issues](../../issues) をご利用ください。

@@ -115,6 +115,8 @@ batch-generating scenes for R2V.
 The Windows installer (self-contained, no additional runtime required) is
 available from Releases.
 
+See [USAGE.md](USAGE.md) for a step-by-step walkthrough with screenshots.
+
 ## Feedback & Questions
 
 Please use [Issues](../../issues) for bug reports, feature requests, or any
