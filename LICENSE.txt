@@ -1,0 +1,84 @@
+MiniMax H3 HACK Studio 使用許諾契約書
+Copyright (c) 2026 Cooking Life Hack
+
+本契約書は、本インストーラーによってインストールされるソフトウェア
+「MiniMax H3 HACK Studio」（以下「本ソフトウェア」）の実行形式（コンパイル済み
+プログラム一式）に適用されます。本ソフトウェアのソースコードは非公開です。
+
+1. 利用許諾
+   商用・業務利用を含むあらゆる目的での、本ソフトウェアのインストール・実行を、
+   以下の制限のもとで無償・非独占的に許諾します。
+
+2. 再配布・転売の禁止
+   本ソフトウェア（インストーラー・インストール後のプログラム一式いずれも）を、
+   有償・無償を問わず第三者へ配布・サブライセンス・販売・貸与その他の方法で
+   提供することはできません。他のウェブサイト・ファイル共有サービス・
+   クラウドストレージの公開リンク等への再アップロード、ミラーサイトでの配布も
+   含みます。
+
+3. 配布元の一本化
+   エンドユーザーは、必ず公式配布元から直接本ソフトウェアを入手してください。
+   公式配布元以外からの入手・配布は認められません。
+
+4. リバースエンジニアリングの禁止
+   本ソフトウェアの逆コンパイル・逆アセンブル・リバースエンジニアリングその他
+   ソースコードを復元する行為を行わないでください（各国の法令で明示的に
+   認められている場合を除く）。
+
+5. 商標の非許諾
+   本契約は、"MiniMax H3 HACK Studio" その他著作権者の名称を商標として使用する
+   権利を許諾するものではありません（本ソフトウェアの出所を説明する目的での、
+   通常かつ合理的な範囲での使用を除く）。
+
+6. 無保証
+   本ソフトウェアは「現状のまま」提供され、商品性・特定目的への適合性・
+   権利非侵害を含め、明示・黙示を問わずいかなる保証もありません。
+
+7. 責任の制限
+   契約・不法行為その他いかなる法理に基づく場合であっても、本ソフトウェアに
+   起因または関連して生じたいかなる請求・損害・その他の責任についても、
+   著作権者は一切責任を負いません。
+
+8. 終了
+   上記の制限事項に違反した場合、本許諾は自動的に終了します。終了後は、
+   本ソフトウェアの使用を中止し、保有するすべてのコピーを削除しなければ
+   なりません。
+
+インストールを続行することにより、上記の条件に同意したものとみなされます。
+
+---
+
+MiniMax H3 HACK Studio End User License Agreement (English reference; the
+Japanese text above governs in case of any discrepancy)
+
+Copyright (c) 2026 Cooking Life Hack
+
+This agreement applies to the compiled binary distribution of "MiniMax H3 HACK
+Studio" installed by this installer. The source code of this software is not
+publicly available.
+
+1. Grant of Use: You may install and run this Software for any purpose,
+   including commercial use, subject to the restrictions below.
+2. No Redistribution or Resale: You may not distribute, sublicense, sell,
+   rent, or otherwise make available this Software (installer or installed
+   program files) to any third party, whether for a fee or free of charge,
+   including re-uploading it to other websites, file-sharing services, or
+   mirror sites.
+3. Single Source of Distribution: End users must obtain this Software only
+   directly from the official distribution source.
+4. No Reverse Engineering: You may not decompile, disassemble, or otherwise
+   reverse engineer this Software, except where explicitly permitted by
+   applicable law.
+5. No Trademark License: This agreement does not grant any right to use the
+   "MiniMax H3 HACK Studio" name or the copyright holder's name as a
+   trademark, except as required for reasonable and customary use in
+   describing the origin of the Software.
+6. No Warranty: THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY
+   KIND, EXPRESS OR IMPLIED.
+7. Limitation of Liability: IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE
+   FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING FROM THE SOFTWARE.
+8. Termination: This license terminates automatically if you violate any of
+   the restrictions above; you must then stop using the Software and delete
+   all copies in your possession.
+
+By continuing the installation, you agree to the terms above.
